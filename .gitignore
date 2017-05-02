@@ -1,2 +1,5 @@
 wav
 wav-all
+npy
+file.wav
+__pycache__
