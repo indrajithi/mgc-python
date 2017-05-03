@@ -167,3 +167,18 @@ def geny(n):
     np.ones(n)*6,np.ones(n)*7,np.ones(n)*8,np.ones(n)*9,np.ones(n)*10]
 
     return np.array(flatten(y))
+
+def gen_suby(sub,n):
+    """
+    generates y for a subclass 
+    usage: gen_suby(sub,n)
+    """
+    y = np.array([])
+    flag = True
+    for i in range(1, sub + 1):
+        if flag:
+            y = np.ones(n) * i
+            flag = False
+        else:
+            y = np.vstack([y,np.ones(n) * i])
+    return np.array(flatten(y))
