@@ -8,6 +8,7 @@ import scipy.io.wavfile
 from python_speech_features import mfcc
 import glob
 import collections
+<<<<<<< HEAD
 from pydub import AudioSegment
 import os
 
@@ -15,12 +16,17 @@ def flatten(x):
     """
     flatten an array
     """
+=======
+
+def flatten(x):
+>>>>>>> ce120f1d2dfdc28237def03235925ff37c879e8b
     if isinstance(x, collections.Iterable):
         return [a for i in x for a in flatten(i)]
     else:
         return [x]
 
 def extract(file):
+<<<<<<< HEAD
     """
     Extracts audio from a given file
     First the audio is converted into wav format
@@ -55,6 +61,21 @@ def extract(file):
             print(e)
 
   
+=======
+    (rate, data) = scipy.io.wavfile.read(file)
+    mfcc_feat = mfcc(data,rate)
+    #redusing mfcc dimension to 104
+    mm = np.transpose(mfcc_feat)
+    mf = np.mean(mm,axis=1)
+    cf = np.cov(mm)
+    ff=mf  
+
+    #ff is a vector of size 104
+    for i in range(mm.shape[0]):
+        ff = np.append(ff,np.diag(cf,i))
+
+    return ff
+>>>>>>> ce120f1d2dfdc28237def03235925ff37c879e8b
 
 
 def extract_all(audio_dir):
@@ -208,6 +229,7 @@ def gen_suby(sub,n):
         else:
             y = np.vstack([y,np.ones(n) * i])
     return np.array(flatten(y))
+<<<<<<< HEAD
 
 def getlabels():
     labels = ['Blues',
@@ -223,3 +245,5 @@ def getlabels():
     return labels
 
 
+=======
+>>>>>>> ce120f1d2dfdc28237def03235925ff37c879e8b
